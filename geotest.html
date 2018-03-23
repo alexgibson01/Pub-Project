@@ -1,17 +1,42 @@
 
 	<!DOCTYPE html>
 	<html>
+
+	<head>
+	<style>
+
+		.wrapper {
+			text-align: center;
+		}
+
+		.button {
+		    background-color: #4CAF50;
+		    border: none;
+		    color: white;
+		    padding: 7px 30px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 16px;
+		    margin: 4px 2px;
+		    cursor: pointer;
+		    position: absolute;
+		    top: 50%;
+		}
+	</style>
+	</head>
+
+
 	<body>
 
-	<p>Click the button to get your coordinates. </p>
+	<!-- <p>Click the button to get your coordinates. </p> -->
+	<div class="wrapper">
+	 	<input type="button" class=button onclick="getLocation()" value="Click me to get your co-ordinates" />
+	</div> 	
 
-	<button onclick="getLocation()">Click Me!</button>
+	<p id="demo">Co-ordinates will show here</p>
 
-	<p id="demo"></p>
-
-	<!-- <button onclick="getLocation()">Now go to Map</button> -->
-
-	<input type="button" onclick="location.href='WhatpubandCafe.html';" value="Go to Map" />
+	<input type="button" class=button onclick="location.href='WhatpubandCafe.html';" value="Go to Map" />
 
 	<script>
 	var x = document.getElementById("demo");
@@ -38,7 +63,6 @@
 	    //console.log(lat, "lat");
 	    //console.log(lng, "lng");
 	}
-
 
 	</script>
 
