@@ -5,41 +5,60 @@
 	<head>
 	<style>
 
-		.wrapper {
-			text-align: center;
+		.main {
+		    background: #ffc;
+		    padding: 2em 0;
+		}
+
+		.button-panel {    
+		    display: table;
+		    margin: 0 auto;
 		}
 
 		.button {
-		    background-color: #4CAF50;
-		    border: none;
+		    display: block;
+		    background: #27adf1;
 		    color: white;
-		    padding: 7px 30px;
-		    text-align: center;
-		    text-decoration: none;
-		    display: inline-block;
-		    font-size: 16px;
-		    margin: 4px 2px;
-		    cursor: pointer;
-		    position: absolute;
-		    top: 50%;
+		    border: none;
+		    padding: .5em 1em;
+		    width: 100%;
 		}
+
+		#button2 {
+			margin-top: .25em;
+		    display: block;
+		    border: 1px solid #27adf1;
+		    color: #27adf1;
+		    background: white;
+		    padding: .5em 1em;
+		    width: 100%;
+		}
+
+		.button3 {
+		    margin-top: .25em;
+		    background: #27adf1;
+		    color: white;
+		    border: none;
+		    padding: .5em 1em;
+		    width: 100%;
+		}
+
 	</style>
 	</head>
 
 
 	<body>
 
-	<!-- <p>Click the button to get your coordinates. </p> -->
-	<div class="wrapper">
-	 	<input type="button" class=button onclick="getLocation()" value="Click me to get your co-ordinates" />
+	<div class="main">
+		<div class="button-panel">
+			<button class="button" onclick="getLocation()">Click me to get your co-ordinates</button> 
+			<button id="button2">Co-ordinates will show here</button> 
+			<button class="button3" onclick="location.href='WhatpubandCafe.html';">Go to Map</button> 
+	 	</div>
 	</div> 	
-
-	<p id="demo">Co-ordinates will show here</p>
-
-	<input type="button" class=button onclick="location.href='WhatpubandCafe.html';" value="Go to Map" />
-
+	
 	<script>
-	var x = document.getElementById("demo");
+	var x = document.getElementById("button2");
 
 	function getLocation() {
 	    if (navigator.geolocation) {
