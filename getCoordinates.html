@@ -1,0 +1,102 @@
+
+	<!DOCTYPE html>
+	<html>
+
+	<head>
+	<style>
+
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		.main {
+		    display:flex;
+		    justify-content: center;
+		    align-items: center;
+		    height: 100vh;
+		}
+
+		.button-panel {    
+		    display: table;
+		    margin: 0 auto;
+		}
+
+		.button {
+		    display: block;
+		    background: #27adf1;
+		    color: white;
+		    border: none;
+		    padding: .5em 1em;
+		    width: 100%;
+		}
+
+		#button2 {
+			margin-top: .25em;
+		    display: block;
+		    border: 1px solid #27adf1;
+		    color: #27adf1;
+		    background: white;
+		    padding: .5em 1em;
+		    width: 100%;
+		}
+
+		.button3 {
+		    margin-top: .25em;
+		    background: #27adf1;
+		    color: white;
+		    border: none;
+		    padding: .5em 1em;
+		    width: 100%;
+		}
+
+	</style>
+	</head>
+
+
+	<body>
+
+	<div class="main">
+		<div class="button-panel">
+			<button class="button" onclick="getLocation()">Click me to get your co-ordinates</button> 
+			<button id="button2">Co-ordinates will show here</button> 
+			<button class="button3" onclick="location.href='index.html';">Go to Map</button> 
+	 	</div>
+	</div> 	
+	
+	<script>
+	var x = document.getElementById("button2");
+
+	function getLocation() {
+	    if (navigator.geolocation) {
+	        navigator.geolocation.getCurrentPosition(showPosition);
+	    } else { 
+	        x.innerHTML = "Geolocation is not supported by this browser.";
+	    }
+	}
+
+	function showPosition(position) {
+
+		var lat = position.coords.latitude;
+		var lng = position.coords.longitude;
+
+		var lat_dis = position.coords.latitude.toFixed(6);
+		var lng_dis = position.coords.longitude.toFixed(6);
+
+		localStorage.setItem("new_lat", lat);
+        localStorage.setItem("new_lng", lng);
+
+        x.innerHTML = "Latitude: " + lat_dis + 
+	     "<br> Longitude: " + lng_dis;
+
+	    // x.innerHTML = "Latitude: " + position.coords.latitude + 
+	    // "<br>Longitude: " + position.coords.longitude;
+
+	    //console.log(lat, "lat");
+	    //console.log(lng, "lng");
+	}
+
+	</script>
+
+	</body>
+	</html>

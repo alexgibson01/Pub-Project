@@ -31,15 +31,21 @@
         var lat1 = localStorage.getItem("new_lat");
         var lng1 = localStorage.getItem("new_lng");
 
-        var new_lat = Number(lat1);
-        var new_lng = Number(lng1);
+        var y = Number(lat1);
+        var x = Number(lng1);
 
-        //console.log(new_lat);
-        //console.log(new_lng);
+        var new_lat = Number(y.toFixed(6));
+        var new_lng = Number(x.toFixed(6));
+
+        // var new_lat = Number(lat1);
+        // var new_lng = Number(lng1);
+
+        console.log(new_lat);
+        console.log(new_lng);
 
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 53.368555, lng: -2.580926}, // Stockton Heath
-          //center:  {lat: new_lat, lng: new_lng},
+          //center: {lat: 53.368555, lng: -2.580926}, // Stockton Heath
+          center:  {lat: new_lat, lng: new_lng},
           //center: {lat: 51.4927325, lng: -0.1595648}, // Sloane Square
           zoom: 13,
           mapTypeId: 'roadmap'
