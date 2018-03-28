@@ -62,7 +62,6 @@
 	</style>
 	</head>
 
-
 	<body>
 
 	<div class="main">
@@ -108,8 +107,8 @@
 
 	function nextPub() {
 		
-		 	var Pubs = "true";
- 			var Others = "false";
+		 	var Pubs = true;
+ 			var Others = false;
 
  			localStorage.setItem("getPubs", Pubs);
             localStorage.setItem("getOthers", Others);
@@ -120,8 +119,8 @@
 
 	function nextOther() {
 		
- 			var Pubs = "false";
- 			var Others = "true";
+ 			var Pubs = false;
+ 			var Others = true;
 
  			localStorage.setItem("getPubs", Pubs);
             localStorage.setItem("getOthers", Others);
