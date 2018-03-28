@@ -69,8 +69,8 @@
 		<div class="button-panel">
 			<button class="button" onclick="getLocation()">Click me to get your co-ordinates</button> 
 			<button id="button2">Co-ordinates will show here</button> 
-			<button class="button3" onclick="location.href='index.html';">Go to Map for Pubs</button> 
-			<button class="button4" onclick="location.href='index.html';">Go to Map for Other Places</button> 
+			<button class="button3" onclick="nextPub()">Go to Map for Pubs</button> 
+			<button class="button4" onclick="nextOther()">Go to Map for Other Places</button> 
 	 	</div>
 	</div> 	
 	
@@ -104,6 +104,29 @@
 
 	    //console.log(lat, "lat");
 	    //console.log(lng, "lng");
+	}
+
+	function nextPub() {
+		
+		 	var Pubs = "true";
+ 			var Others = "false";
+
+ 			localStorage.setItem("getPubs", Pubs);
+            localStorage.setItem("getOthers", Others);
+			
+			location.href='index.html';
+			
+	}
+
+	function nextOther() {
+		
+ 			var Pubs = "false";
+ 			var Others = "true";
+
+ 			localStorage.setItem("getPubs", Pubs);
+            localStorage.setItem("getOthers", Others);
+			
+			location.href='index.html';
 	}
 
 	</script>
