@@ -81,7 +81,7 @@
           }
         };
 
-        // if (new_getPubs = false and new_getOthers = true) 
+        if (new_getPubs === false && new_getOthers === true) 
 
         // Create markers.
         cafes.forEach(function(feature) {
@@ -125,7 +125,7 @@
                   });   
 
 
-        // if (new_getPubs = true and new_getOthers = false) 
+        if (new_getPubs === true && new_getOthers === false) 
          
         fetch('https://raw.githubusercontent.com/hazanjon/camra-pubs/master/research/SearchPubs.json')
         .then((resp) => resp.json())

@@ -73,60 +73,64 @@
 	 	</div>
 	</div> 	
 	
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
 	<script>
-	var x = document.getElementById("button2");
 
-	function getLocation() {
-	    if (navigator.geolocation) {
-	        navigator.geolocation.getCurrentPosition(showPosition);
-	    } else { 
-	        x.innerHTML = "Geolocation is not supported by this browser.";
-	    }
-	}
+		jQuery(document).ready(function($) {
+		   		$(".button3, .button4").attr('disabled', 'disabled');
+		   		$(".button").click(function(){
+		     		$(".button3, .button4").removeAttr("disabled"); // removing attribute
+		   		})
+		 });	
 
-	function showPosition(position) {
+		var x = document.getElementById("button2");
 
-		var lat = position.coords.latitude;
-		var lng = position.coords.longitude;
+		function getLocation() {
+		    if (navigator.geolocation) {
+		        navigator.geolocation.getCurrentPosition(showPosition);
+		    } else { 
+		        x.innerHTML = "Geolocation is not supported by this browser.";
+		    }
+		}
 
-		var lat_dis = position.coords.latitude.toFixed(6);
-		var lng_dis = position.coords.longitude.toFixed(6);
+		function showPosition(position) {
 
-		localStorage.setItem("new_lat", lat);
-        localStorage.setItem("new_lng", lng);
+			var lat = position.coords.latitude.toFixed(6);
+			var lng = position.coords.longitude.toFixed(6);
 
-        x.innerHTML = "Latitude: " + lat_dis + 
-	     "<br> Longitude: " + lng_dis;
+			localStorage.setItem("new_lat", lat);
+	        localStorage.setItem("new_lng", lng);
 
-	    // x.innerHTML = "Latitude: " + position.coords.latitude + 
-	    // "<br>Longitude: " + position.coords.longitude;
+	        x.innerHTML = "Latitude: " + lat + 
+		     "<br> Longitude: " + lng;
 
-	    //console.log(lat, "lat");
-	    //console.log(lng, "lng");
-	}
+		    //console.log(lat, "lat");
+		    //console.log(lng, "lng");
+		}
 
-	function nextPub() {
-		
-		 	var Pubs = true;
- 			var Others = false;
-
- 			localStorage.setItem("getPubs", Pubs);
-            localStorage.setItem("getOthers", Others);
+		function nextPub() {
 			
-			location.href='index.html';
-			
-	}
+			 	var Pubs = true;
+	 			var Others = false;
 
-	function nextOther() {
-		
- 			var Pubs = false;
- 			var Others = true;
+	 			localStorage.setItem("getPubs", Pubs);
+	            localStorage.setItem("getOthers", Others);
+				
+				location.href='index.html';
+				
+		}
 
- 			localStorage.setItem("getPubs", Pubs);
-            localStorage.setItem("getOthers", Others);
+		function nextOther() {
 			
-			location.href='index.html';
-	}
+	 			var Pubs = false;
+	 			var Others = true;
+
+	 			localStorage.setItem("getPubs", Pubs);
+	            localStorage.setItem("getOthers", Others);
+				
+				location.href='index.html';
+		}
 
 	</script>
 
