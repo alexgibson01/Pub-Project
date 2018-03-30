@@ -1,0 +1,146 @@
+
+	<!DOCTYPE html>
+	<html>
+
+	<head>
+	<style>
+
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		.main {
+		    display:flex;
+		    justify-content: center;
+		    align-items: center;
+		    height: 100vh;
+		}
+
+		.button-panel {    
+		    display: table;
+		    margin: 0 auto;
+		}
+
+		.button {
+		    display: block;
+		    background: #27adf1;
+		    color: white;
+		    border: none;
+		    padding: .5em 1em;
+		    width: 100%;
+		}
+
+		#button2 {
+			margin-top: .25em;
+		    display: block;
+		    border: 1px solid #27adf1;
+		    color: #27adf1;
+		    background: white;
+		    padding: .5em 1em;
+		    width: 100%;
+		}
+
+		.button3 {
+		    margin-top: .25em;
+		    background: #27adf1;
+		    color: white;
+		    border: none;
+		    padding: .5em 1em;
+		    width: 100%;
+		}
+
+		.button4 {
+		    margin-top: .25em;
+		    background: #27adf1;
+		    color: white;
+		    border: none;
+		    padding: .5em 1em;
+		    width: 100%;
+		}
+
+	</style>
+	</head>
+
+	<body>
+
+	<div class="main">
+		<div class="button-panel">
+			<button class="button" onclick="getLocation()">Click me to get your co-ordinates</button> 
+			<button id="button2">Co-ordinates will show here</button> 
+			<button class="button3" onclick="nextPub()">Go to Map for Pubs</button> 
+			<button class="button4" onclick="nextOther()">Go to Map for Other Places</button> 
+	 	</div>
+	</div> 	
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+	<script>
+
+		/* use jquery to disable buttons 3 & 4 until 1st button clicked */
+
+		jQuery(document).ready(function($) {
+		   		$(".button3, .button4").attr('disabled', 'disabled');
+		   		$(".button").click(function(){
+		     		$(".button3, .button4").removeAttr("disabled"); // removing attribute
+		   		})
+		});	
+
+		/* function to get current position/co-ordinates and to display in button2 */		
+
+		var x = document.getElementById("button2");
+
+		function getLocation() {
+		    if (navigator.geolocation) {
+		        navigator.geolocation.getCurrentPosition(showPosition);
+		    } else { 
+		        x.innerHTML = "Geolocation is not supported by this browser.";
+		    }
+		}
+
+		function showPosition(position) {
+
+			var lat = position.coords.latitude.toFixed(6);
+			var lng = position.coords.longitude.toFixed(6);
+
+			localStorage.setItem("new_lat", lat);
+	        localStorage.setItem("new_lng", lng);
+
+	        x.innerHTML = "Latitude: " + lat + 
+		     "<br> Longitude: " + lng;
+
+		    /* console.log(lat, "lat"); */
+		    /* console.log(lng, "lng"); */
+		}
+
+		/* function to set flag to go to pubs map */
+
+		function nextPub() {
+			
+			 	var Pubs = true;
+	 			var Others = false;
+
+	 			localStorage.setItem("getPubs", Pubs);
+	            localStorage.setItem("getOthers", Others);
+				
+				location.href='mainmap.html';
+				
+		}
+
+		/* function to set flag to go to others map */
+
+		function nextOther() {
+			
+	 			var Pubs = false;
+	 			var Others = true;
+
+	 			localStorage.setItem("getPubs", Pubs);
+	            localStorage.setItem("getOthers", Others);
+				
+				location.href='mainmap.html';
+		}
+
+	</script>
+
+	</body>
+	</html>
