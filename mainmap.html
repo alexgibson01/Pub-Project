@@ -91,20 +91,22 @@
             }
           };
 
-          var marker = new google.maps.Marker
-               ({
-                  position: new google.maps.LatLng(new_lat, new_lng),
-                  animation: google.maps.Animation.DROP, 
-                  title: 'You are here',
-                  //label: 'You are here', 
-                  icon: icons['here'].icon,
-                  map: map
-                });
+        // Creates you are here marker  
 
-                marker.addListener('click', function() {
-                map.setZoom(15);
-                map.setCenter(marker.getPosition());
-                        });   
+            var marker = new google.maps.Marker
+                 ({
+                    position: new google.maps.LatLng(new_lat, new_lng),
+                    animation: google.maps.Animation.DROP, 
+                    title: 'You are here',
+                    //label: 'You are here', 
+                    icon: icons['here'].icon,
+                    map: map
+                  });
+
+                  marker.addListener('click', function() {
+                    map.setZoom(15);
+                    map.setCenter(marker.getPosition());
+                            });   
                      
 
         // ** Path 1 - Others (Non Pubs) **
@@ -116,141 +118,169 @@
 
           if (feature.Type === "Classic Cafe") {
 
-          var marker = new google.maps.Marker
-          ({
-            position: new google.maps.LatLng(feature.Latitude, feature.Longitude),
-            icon: icons['cafe'].icon,
-            title: feature.Type + ': ' + feature.Name,
-            animation: google.maps.Animation.DROP, 
-            map: map
-          });
-             }
+            var marker = new google.maps.Marker
+            ({
+              position: new google.maps.LatLng(feature.Latitude, feature.Longitude),
+              icon: icons['cafe'].icon,
+              title: feature.Type + ': ' + feature.Name,
+              animation: google.maps.Animation.DROP, 
+              map: map
+            });
+               }
 
           if (feature.Type === "Cabmen's Shelter") {
 
-          var marker = new google.maps.Marker
-          ({
-            position: new google.maps.LatLng(feature.Latitude, feature.Longitude),
-            icon: icons['shelter'].icon,
-            title: feature.Type + ': ' + feature.Name,
-            animation: google.maps.Animation.DROP, 
-            map: map
-          });
-               };
+            var marker = new google.maps.Marker
+            ({
+              position: new google.maps.LatLng(feature.Latitude, feature.Longitude),
+              icon: icons['shelter'].icon,
+              title: feature.Type + ': ' + feature.Name,
+              animation: google.maps.Animation.DROP, 
+              map: map
+            });
+                 };
 
           if (feature.Type === "Modern Cafe") {
 
-          var marker = new google.maps.Marker
-          ({
-            position: new google.maps.LatLng(feature.Latitude, feature.Longitude),
-            icon: icons['cafe'].icon,
-            title: feature.Type + ': ' + feature.Name,
-            animation: google.maps.Animation.DROP, 
-            map: map
-          });
-               };   
+            var marker = new google.maps.Marker
+            ({
+              position: new google.maps.LatLng(feature.Latitude, feature.Longitude),
+              icon: icons['cafe'].icon,
+              title: feature.Type + ': ' + feature.Name,
+              animation: google.maps.Animation.DROP, 
+              map: map
+            });
+                 };   
 
           if (feature.Type === "Lido") {
 
-          var marker = new google.maps.Marker
-          ({
-            position: new google.maps.LatLng(feature.Latitude, feature.Longitude),
-            icon: icons['lido'].icon,
-            title: feature.Type + ': ' + feature.Name,
-            animation: google.maps.Animation.DROP, 
-            map: map
-          });
-               };
+            var marker = new google.maps.Marker
+            ({
+              position: new google.maps.LatLng(feature.Latitude, feature.Longitude),
+              icon: icons['lido'].icon,
+              title: feature.Type + ': ' + feature.Name,
+              animation: google.maps.Animation.DROP, 
+              map: map
+            });
+                 };
 
           if (feature.Type === "Houses") {
 
-          var marker = new google.maps.Marker
-          ({
-            position: new google.maps.LatLng(feature.Latitude, feature.Longitude),
-            icon: icons['houses'].icon,
-            title: feature.Type + ': ' + feature.Name,
-            animation: google.maps.Animation.DROP, 
-            map: map
-          });
-               }; 
+            var marker = new google.maps.Marker
+            ({
+              position: new google.maps.LatLng(feature.Latitude, feature.Longitude),
+              icon: icons['houses'].icon,
+              title: feature.Type + ': ' + feature.Name,
+              animation: google.maps.Animation.DROP, 
+              map: map
+            });
+                 }; 
                
           if (feature.Type === "Venues") {
 
-          var marker = new google.maps.Marker
-          ({
-            position: new google.maps.LatLng(feature.Latitude, feature.Longitude),
-            icon: icons['venues'].icon,
-            title: feature.Type + ': ' + feature.Name,
-            animation: google.maps.Animation.DROP, 
-            map: map
-          });
-               };                  
+            var marker = new google.maps.Marker
+            ({
+              position: new google.maps.LatLng(feature.Latitude, feature.Longitude),
+              icon: icons['venues'].icon,
+              title: feature.Type + ': ' + feature.Name,
+              animation: google.maps.Animation.DROP, 
+              map: map
+            });
+                 };                  
 
             marker.addListener('click', function() {
-                 map.setZoom(15);
-                 map.setCenter(marker.getPosition());
-                        });   
+               map.setZoom(15);
+               map.setCenter(marker.getPosition());
+                      });   
 
-                  });   
+            var contentString = '<div align="left"><p style="color:#000000;"><a href="http://publicaccessgolf.com.au/' + feature.Type + '" >' + '</a><br />' + feature.Name + '<br />' 
+              + '</p></div>';
+            /*
+            var contentString = 
+              feature.Type,
+              feature.Name,
+              feature.Town
+              "County"
+              "Latitude"
+              "Longitude"
+              "Postcode"
+            ;
+            */ 
+
+            var infowindow = new google.maps.InfoWindow({
+
+            content: contentString
+            
+                });                  
+
+            marker.addListener('dblclick', function() {
+                 //map.setZoom(15);
+                 //map.setCenter(marker.getPosition()); 
+                 infowindow.open(map, marker);
+                });
+
+                  });  
 
         // ** Path 2 - Pubs **
 
         if (new_getPubs === true && new_getOthers === false) 
 
-        fetch('https://raw.githubusercontent.com/hazanjon/camra-pubs/master/research/SearchPubs.json')
-        .then((resp) => resp.json())
-        .then(function(result)
-         {
-            let pubsInCheshireServingRealAle = result.response.Pub.filter(pub => 
-                (
-                  //pub.RealAle === "y" || pub.RealAle === "n"
-                  //pub.Latitude === new_lat && pub.Longitude === new_lng
-                  (pub.County === "CHES" && pub.RealAle === "y" ) || 
-                  // (pub.Town === "London" && pub.RealAle === "y" ) ||
-                  (pub.Town === "Liverpool" && pub.RealAle === "y" ) ||
-                  // (pub.County === "GLNW" && pub.RealAle === "y" )  ||           
-                  (pub.County.match(/GM/g) && pub.RealAle === "y" )
-                 )
-                  );
-            pubsInCheshireServingRealAle.forEach(function(pub) 
+          fetch('https://raw.githubusercontent.com/hazanjon/camra-pubs/master/research/SearchPubs.json')
+          .then((resp) => resp.json())
+          .then(function(result)
+           {
+              let pubsInCheshireServingRealAle = result.response.Pub.filter(pub => 
+                  (
+                    //pub.RealAle === "y" || pub.RealAle === "n"
+                    //pub.Latitude === new_lat && pub.Longitude === new_lng
+                    (pub.County === "CHES" && pub.RealAle === "y" ) || 
+                    // (pub.Town === "London" && pub.RealAle === "y" ) ||
+                    (pub.Town === "Liverpool" && pub.RealAle === "y" ) ||
+                    // (pub.County === "GLNW" && pub.RealAle === "y" )  ||           
+                    (pub.County.match(/GM/g) && pub.RealAle === "y" )
+                   )
+                    );
+                  pubsInCheshireServingRealAle.forEach(function(pub) 
             {
               
               if (pub.Town === "Liverpool") {
 
-              var marker = new google.maps.Marker
-               ({
-                  position: new google.maps.LatLng(pub.Latitude, pub.Longitude),
-                  title: pub.Name,
-                  //animation: google.maps.Animation.DROP, 
-                  //label: pub.Name, 
-                  icon: icons['pub'].icon,
-                  map: map
-                });
+                var marker = new google.maps.Marker
+                 ({
+                    position: new google.maps.LatLng(pub.Latitude, pub.Longitude),
+                    title: pub.Name,
+                    //animation: google.maps.Animation.DROP, 
+                    //label: pub.Name, 
+                    icon: icons['pub'].icon,
+                    map: map
+                  });
                                       }
 
               else if (pub.County === "CHES") {
-              var marker = new google.maps.Marker
-               ({
-                  position: new google.maps.LatLng(pub.Latitude, pub.Longitude),
-                  title: pub.Name,
-                  //animation: google.maps.Animation.DROP, 
-                  icon: icons['pub'].icon,
-                  map: map
-                });
-                    }       
+
+                var marker = new google.maps.Marker
+                 ({
+                    position: new google.maps.LatLng(pub.Latitude, pub.Longitude),
+                    title: pub.Name,
+                    //animation: google.maps.Animation.DROP, 
+                    icon: icons['pub'].icon,
+                    map: map
+                  });
+                      }       
 
               else  {
-              var marker = new google.maps.Marker
-               ({
-                  position: new google.maps.LatLng(pub.Latitude, pub.Longitude),
-                  title: pub.Name,
-                  //animation: google.maps.Animation.DROP, 
-                  icon: icons['pub'].icon,
-                  map: map
-                });
-                    }                           
 
-                    marker.addListener('click', function() {
+                var marker = new google.maps.Marker
+                 ({
+                    position: new google.maps.LatLng(pub.Latitude, pub.Longitude),
+                    title: pub.Name,
+                    //animation: google.maps.Animation.DROP, 
+                    icon: icons['pub'].icon,
+                    map: map
+                  });
+                      }                           
+
+                  marker.addListener('click', function() {
                     map.setZoom(15);
                     map.setCenter(marker.getPosition());
                     infoWindow.open(map, marker);
