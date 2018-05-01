@@ -193,8 +193,9 @@
                map.setCenter(marker.getPosition());
                       });   
 
-            var contentString = '<div align="left"><p style="color:#000000;"><a href="http://publicaccessgolf.com.au/' + feature.Type + '" >' + '</a><br />' + feature.Name + '<br />' 
-              + '</p></div>';
+            var contentString = '<div align="left"><p style="color:#000000;"><br />' + feature.Type + '<br />' + 
+              feature.Name + '<br />' + feature.Postcode + '<br />' +
+              "Visited: <input type='checkbox' name='flag6' id='flag6' value='Y'></input>" + '</p></div>';
             /*
             var contentString = 
               feature.Type,
@@ -209,14 +210,15 @@
 
             var infowindow = new google.maps.InfoWindow({
 
-            content: contentString
+            content: contentString 
             
                 });                  
 
             marker.addListener('dblclick', function() {
                  //map.setZoom(15);
                  //map.setCenter(marker.getPosition()); 
-                 infowindow.open(map, marker);
+                 infowindow.open(map, marker)
+                 console.log('here');
                 });
 
                   });  
