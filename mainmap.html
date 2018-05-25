@@ -195,18 +195,9 @@
 
             var contentString = '<div align="left"><p style="color:#000000;"><br />' + feature.Type + '<br />' + 
               feature.Name + '<br />' + feature.Postcode + '<br />' +
-              "Visited: <input type='checkbox' name='flag6' id='flag6' value='Y'></input>" + '</p></div>';
-            /*
-            var contentString = 
-              feature.Type,
-              feature.Name,
-              feature.Town
-              "County"
-              "Latitude"
-              "Longitude"
-              "Postcode"
-            ;
-            */ 
+              "Visited: <input type='checkbox' name='flag6' id='flag6' value='Y'></input>" 
+              + '</p></div>';
+           
 
             var infowindow = new google.maps.InfoWindow({
 
@@ -217,9 +208,20 @@
             marker.addListener('dblclick', function() {
                  //map.setZoom(15);
                  //map.setCenter(marker.getPosition()); 
-                 infowindow.open(map, marker)
-                 console.log('here');
+                 infowindow.open(map, marker);
                 });
+
+            google.maps.event.addListener(marker, 'mouseover', function() {
+                  $(document).ready(function(){
+                  $('input[type=checkbox]').click(function(){
+                    if($(this).is(':checked')){
+                     // alert($(this).attr('id'));  
+                        alert ("checked");
+                          }   
+                    else {alert("unchecked");}
+                        });
+                      });
+                    });
 
                   });  
 
@@ -236,9 +238,9 @@
                     //pub.RealAle === "y" || pub.RealAle === "n"
                     //pub.Latitude === new_lat && pub.Longitude === new_lng
                     (pub.County === "CHES" && pub.RealAle === "y" ) || 
-                    // (pub.Town === "London" && pub.RealAle === "y" ) ||
+                     (pub.Town === "London" && pub.RealAle === "y" ) ||
                     (pub.Town === "Liverpool" && pub.RealAle === "y" ) ||
-                    // (pub.County === "GLNW" && pub.RealAle === "y" )  ||           
+                     (pub.County === "GLNW" && pub.RealAle === "y" )  ||           
                     (pub.County.match(/GM/g) && pub.RealAle === "y" )
                    )
                     );
